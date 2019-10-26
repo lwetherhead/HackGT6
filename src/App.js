@@ -18,7 +18,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(result.codeResult.code);
     return (
       <div>
         <button onClick={this._scan}>
