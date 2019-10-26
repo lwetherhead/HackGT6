@@ -1,27 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
+import Scanner from './Scanner'
+import Result from './Result'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p> HackGT6!! </p>
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {
+    scanning: false,
+    results: [],
+  }
+
+  _scan = () => {
+    this.setState({ scanning: !this.state.scanning })
+  }
+
+  _onDetected = result => {
+    this.setState({ results: this.state.results.concat([result]) })
+  }
+
+  render() {
+    console.log(result.codeResult.code);
+    return (
+      <div>
+        <button onClick={this._scan}>
+          {this.state.scanning ? 'Stop' : 'Start'}
+        </button>
+        <ul className="results">
+          {this.state.results.map((result, i) => (
+            <Result key={result.codeResult.code + i} result={result} />
+          ))}
+        </ul>
+        {this.state.scanning ? <Scanner onDetected={this._onDetected} /> : null}
+      </div>
+    )
+  }
 }
 
-export default App;
+export default App
+
+const rootElement = document.getElementById('root')
+ReactDOM.render(<App />, rootElement)
