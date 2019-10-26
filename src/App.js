@@ -5,7 +5,7 @@ import Result from './Result'
 
 class App extends Component {
   state = {
-    scanning: false,
+    scanning: true,
     results: [],
   }
 
@@ -15,14 +15,12 @@ class App extends Component {
 
   _onDetected = result => {
     this.setState({ results: this.state.results.concat([result]) })
+    this.setState({ scanning: false})
   }
 
   render() {
     return (
       <div>
-        <button onClick={this._scan}>
-          {this.state.scanning ? 'Stop' : 'Start'}
-        </button>
         <ul className="results">
           {this.state.results.map((result, i) => (
             <Result key={result.codeResult.code + i} result={result} />
