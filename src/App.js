@@ -7,8 +7,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p> Hack GT YAY </p>
-        <p> change to check credentials :)  </p>
+        <p> HackGT6!! </p>
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
